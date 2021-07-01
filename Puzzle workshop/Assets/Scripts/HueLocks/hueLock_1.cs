@@ -1,0 +1,71 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class hueLock_1 : MonoBehaviour
+{
+
+    int distance = 5;
+
+    public Color32 opt1;
+    public Color32 opt2;
+    public Color32 opt3;
+    public Color32 opt4;
+    public Color32 goal;
+    public bool Corrected = false;
+    public GameObject hueBut;
+    int hueSwitch = 1;
+
+
+
+
+    private void OnMouseDown()
+     {
+        var playerPos = GameObject.Find("playerBody").transform.position;
+
+        if(Vector3.Distance(playerPos, transform.position) <= distance){
+
+            var hueRend = hueBut.GetComponent<Renderer>();
+
+            if(hueSwitch == 1){
+                hueRend.material.SetColor("_Color", opt1);
+                hueSwitch = 2;
+            }
+            else if(hueSwitch == 2){
+                hueRend.material.SetColor("_Color", opt2);
+                hueSwitch = 3;
+            }
+            else if(hueSwitch == 3){
+                hueRend.material.SetColor("_Color", opt3);
+                hueSwitch = 4;
+            }
+            else{
+                hueRend.material.SetColor("_Color", opt4);
+                hueSwitch = 1;
+        }
+        }
+        
+     }
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        var hueRend = hueBut.GetComponent<Renderer>();
+        hueRend.material.SetColor("_Color", opt4);
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        var hueRend = hueBut.GetComponent<Renderer>();
+        var hueHue = hueRend.material.GetColor("_Color");
+        if(hueHue == goal){
+            Corrected = true;
+        }
+        else{
+            Corrected = false;
+        }
+        
+    }
+}
