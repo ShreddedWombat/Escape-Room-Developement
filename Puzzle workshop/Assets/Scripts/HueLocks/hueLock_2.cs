@@ -20,19 +20,19 @@ public class hueLock_2 : MonoBehaviour
         var hueRend = hueBut.GetComponent<Renderer>();
 
         if(hueSwitch == 1){
-            hueRend.material.SetColor("_Color", opt1);
+            hueRend.material.SetColor("_BaseColor", opt1);
             hueSwitch = 2;
         }
         else if(hueSwitch == 2){
-            hueRend.material.SetColor("_Color", opt2);
+            hueRend.material.SetColor("_BaseColor", opt2);
             hueSwitch = 3;
         }
         else if(hueSwitch == 3){
-            hueRend.material.SetColor("_Color", opt3);
+            hueRend.material.SetColor("_BaseColor", opt3);
             hueSwitch = 4;
         }
         else{
-            hueRend.material.SetColor("_Color", opt4);
+            hueRend.material.SetColor("_BaseColor", opt4);
             hueSwitch = 1;
         }
         
@@ -43,7 +43,7 @@ public class hueLock_2 : MonoBehaviour
     void Start()
     {
         var hueRend = hueBut.GetComponent<Renderer>();
-        hueRend.material.SetColor("_Color", opt3);
+        hueRend.material.SetColor("_BaseColor", opt3);
         
     }
 
@@ -51,7 +51,7 @@ public class hueLock_2 : MonoBehaviour
     void Update()
     {
         var hueRend = hueBut.GetComponent<Renderer>();
-        var hueHue = hueRend.material.GetColor("_Color");
+        var hueHue = hueRend.material.GetColor("_BaseColor");
         if(hueHue == goal){
             Corrected = true;
         }

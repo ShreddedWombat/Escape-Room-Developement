@@ -33,7 +33,7 @@ public class _3x3Pattern : MonoBehaviour
 
             string curOpt = ("opt"+_3xSwitch);
             optDict.TryGetValue(curOpt, out Color32 currOption);
-            _3xRend.material.SetColor("_Color", currOption);
+            _3xRend.material.SetColor("_BaseColor", currOption);
             _3xSwitch += 1;
             }
         
@@ -58,14 +58,14 @@ public class _3x3Pattern : MonoBehaviour
         optDict.Add("opt8", opt8);
 
         var _3xRend = But_3x3.GetComponent<Renderer>();
-        _3xRend.material.SetColor("_Color", opt1);
+        _3xRend.material.SetColor("_BaseColor", opt1);
     }
 
     // Update is called once per frame
     void Update()
     {
         var _3xRend = But_3x3.GetComponent<Renderer>();
-        var _3xHue = _3xRend.material.GetColor("_Color");
+        var _3xHue = _3xRend.material.GetColor("_BaseColor");
         if(_3xHue == goal){
             Corrected = true;
         }
