@@ -12,13 +12,28 @@ public class Player_Movement : MonoBehaviour
     public float jumpHeight = 3f;
 
     public Transform groundCheck;
+    public Transform Field;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+    public LayerMask fieldMask;
+    public LayerMask fieldDistance = 0.4f;
+    
 
     Vector3 velocity;
     bool isGrounded;
+    bool isFielded;
 
-   
+   // All Collision-Based events
+   void OnCollisionEnter(Collision collision)
+   {
+          // Force  Field Collisions
+          isFielded = Physics.CheckCapsule(controller.position, fieldDistance, fieldMask);
+          if(isFielded)
+          {
+              velocity.y * -1f;
+              velocity.x * -1f;
+          }
+   }
 
     // Update is called once per frame
     void Update()
