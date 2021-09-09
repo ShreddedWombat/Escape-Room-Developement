@@ -6,18 +6,17 @@ public class Player_Movement : MonoBehaviour
 {
 
     public CharacterController controller;
+    public Transform playerBody;
 
     public float speed = 12f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
 
     public Transform groundCheck;
-    public Transform Field;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     public LayerMask fieldMask;
-    public LayerMask fieldDistance = 0.4f;
-    
+    public float fieldDistance = 0.4f;
 
     Vector3 velocity;
     bool isGrounded;
@@ -26,12 +25,13 @@ public class Player_Movement : MonoBehaviour
    // All Collision-Based events
    void OnCollisionEnter(Collision collision)
    {
+          
           // Force  Field Collisions
-          isFielded = Physics.CheckCapsule(controller.position, fieldDistance, fieldMask);
+          isFielded = Physics.CheckSphere(groundCheck.position, fieldDistance, fieldMask);
           if(isFielded)
           {
-              velocity.y * -1f;
-              velocity.x * -1f;
+              velocity.y = velocity.y * -1;
+              velocity.x = velocity.x * -1;
           }
    }
 
