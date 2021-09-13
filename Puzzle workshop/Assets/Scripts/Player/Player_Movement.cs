@@ -17,23 +17,14 @@ public class Player_Movement : MonoBehaviour
     public LayerMask groundMask;
     public LayerMask fieldMask;
     public float fieldDistance = 0.4f;
+    public CapsuleCollider fieldCheck;
+
+    Vector3 startPt;
+    Vector3 endPt;
 
     Vector3 velocity;
     bool isGrounded;
     bool isFielded;
-
-   // All Collision-Based events
-   void OnCollisionEnter(Collision collision)
-   {
-          
-          // Force  Field Collisions
-          isFielded = Physics.CheckSphere(groundCheck.position, fieldDistance, fieldMask);
-          if(isFielded)
-          {
-              velocity.y = velocity.y * -1;
-              velocity.x = velocity.x * -1;
-          }
-   }
 
     // Update is called once per frame
     void Update()
@@ -46,6 +37,17 @@ public class Player_Movement : MonoBehaviour
             velocity.y = -2f;
 
         }
+
+        //startPt = new Vector3(playerBody.position.x, playerBody.position.y + (fieldCheck.radius +0.01f), playerBody.position.z);
+        //endPt = new Vector3(playerBody.position.x, playerBody.position.y - (fieldCheck.radius +0.01f), playerBody.position.z);
+
+        //isFielded = Physics.CheckCapsule(startPt, endPt, fieldCheck.radius + 0.05f, fieldMask);
+        isFielded = Physics.CheckSphere(groundCheck.position, groundDistance, fieldMask);
+          if(isFielded)
+          {
+              velocity.y = velocity.y * -1;
+              velocity.x = velocity.x * -1;
+          }
 
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
