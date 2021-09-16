@@ -16,8 +16,8 @@ public class Player_Movement : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     public LayerMask fieldMask;
-    public float fieldDistance = 0.4f;
-    public CapsuleCollider fieldCheck;
+    public float fieldDistance = 0.7f;
+    public Transform fieldCheck;
 
     Vector3 startPt;
     Vector3 endPt;
@@ -25,7 +25,9 @@ public class Player_Movement : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
     bool isFielded;
+    bool fieldKeep = true;
 
+    float fieldTime = 0;
     // Update is called once per frame
     void Update()
     {
@@ -38,16 +40,29 @@ public class Player_Movement : MonoBehaviour
 
         }
 
-        //startPt = new Vector3(playerBody.position.x, playerBody.position.y + (fieldCheck.radius +0.01f), playerBody.position.z);
-        //endPt = new Vector3(playerBody.position.x, playerBody.position.y - (fieldCheck.radius +0.01f), playerBody.position.z);
+        startPt = new Vector3(fieldCheck.position.x, fieldCheck.position.y + (fieldDistance +1.5f), fieldCheck.position.z);
+        endPt = new Vector3(fieldCheck.position.x, fieldCheck.position.y - (fieldDistance +1.5f), playerBody.position.z);
 
-        //isFielded = Physics.CheckCapsule(startPt, endPt, fieldCheck.radius + 0.05f, fieldMask);
-        isFielded = Physics.CheckSphere(groundCheck.position, groundDistance, fieldMask);
-          if(isFielded)
+        if(fieldKeep)
+        {
+            isFielded = Physics.CheckCapsule(startPt, endPt, fieldDistance + 0.05f, fieldMask);
+        }
+        else{
+            isFielded = false;
+
+            if(fieldTime > 4){
+                fieldKeep = true;
+            }
+        }
+        //isFielded = Physics.CheckSphere(groundCheck.position, groundDistance, fieldMask);
+          if(isFielded && fieldKeep)
           {
-              velocity.y = velocity.y * -1;
-              velocity.x = velocity.x * -1;
+              velocity.y = velocity.y * -2;
+              velocity.x = velocity.x * -2;
+              fieldKeep = false;
           }
+
+         
 
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
@@ -58,9 +73,10 @@ public class Player_Movement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
-
+        if(!isFielded)
+        {
         controller.Move(move * speed * Time.deltaTime);
-
+        }
         velocity.y += gravity * Time.deltaTime * 2;
 
         controller.Move(velocity * Time.deltaTime);
