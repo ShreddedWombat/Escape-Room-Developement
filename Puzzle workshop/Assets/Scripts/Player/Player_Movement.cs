@@ -36,7 +36,7 @@ public class Player_Movement : MonoBehaviour
 
         if(isGrounded && velocity.y < 0)
         {
-            velocity.y = -2f;
+            velocity.y = -2.6f;
 
         }
 
@@ -49,16 +49,22 @@ public class Player_Movement : MonoBehaviour
         }
         else{
             isFielded = false;
-
-            if(fieldTime > 4){
+            fieldTime += Time.deltaTime;
+            if(fieldTime > 1){
                 fieldKeep = true;
+                fieldTime = 0;
             }
         }
         //isFielded = Physics.CheckSphere(groundCheck.position, groundDistance, fieldMask);
           if(isFielded && fieldKeep)
           {
-              velocity.y = velocity.y * -2;
-              velocity.x = velocity.x * -2;
+              float xBounce = Mathf.Pow((velocity.x),0) * 2;
+              float yBounce = Mathf.Pow((velocity.y),0) * 2;
+              float zBounce = Mathf.Pow((velocity.z),0) * 2;
+
+              velocity.y = (velocity.y + yBounce) * -2;
+              velocity.x = (velocity.x + xBounce) * -2;
+              velocity.z = (velocity.z + zBounce) * -2;
               fieldKeep = false;
           }
 
@@ -68,9 +74,62 @@ public class Player_Movement : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
+
         
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
+
+        if((x == 0) && (velocity.x != 0))
+        {
+            if(velocity.x < 0 )
+            {
+                if(velocity.x > -1.01)
+                {
+                    velocity.x = 0;
+                }
+                else
+                {
+                    velocity.x += 1;
+                }    
+            }
+            else
+            {
+                if(velocity.x < 1.01)
+                {
+                    velocity.x = 0;
+                }
+                else
+                {
+                    velocity.x -= 1;
+                }
+            }
+        }
+
+        if((z == 0) && (velocity.z != 0))
+        {
+            if(velocity.z < 0 )
+            {
+                if(velocity.z > -1.01)
+                {
+                    velocity.z = 0;
+                }
+                else
+                {
+                    velocity.z += 1;
+                }    
+            }
+            else
+            {
+                if(velocity.z < 1.01)
+                {
+                    velocity.z = 0;
+                }
+                else
+                {
+                    velocity.z -= 1;
+                }
+            }
+        }
 
         Vector3 move = transform.right * x + transform.forward * z;
         if(!isFielded)
