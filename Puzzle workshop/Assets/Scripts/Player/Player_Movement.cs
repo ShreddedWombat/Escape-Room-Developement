@@ -26,6 +26,7 @@ public class Player_Movement : MonoBehaviour
     bool isGrounded;
     bool isFielded;
     bool fieldKeep = true;
+    bool groundField = false;
 
     float fieldTime = 0;
     // Update is called once per frame
@@ -45,12 +46,12 @@ public class Player_Movement : MonoBehaviour
 
         if(fieldKeep)
         {
-            isFielded = Physics.CheckCapsule(startPt, endPt, fieldDistance + 0.05f, fieldMask);
+            isFielded = Physics.CheckCapsule(startPt, endPt, fieldDistance + 0.09f, fieldMask);
         }
         else{
             isFielded = false;
             fieldTime += Time.deltaTime;
-            if(fieldTime > 1){
+            if(fieldTime > 0.1){
                 fieldKeep = true;
                 fieldTime = 0;
             }
@@ -58,15 +59,45 @@ public class Player_Movement : MonoBehaviour
         //isFielded = Physics.CheckSphere(groundCheck.position, groundDistance, fieldMask);
           if(isFielded && fieldKeep)
           {
-              float xBounce = Mathf.Pow((velocity.x),0) * 2;
-              float yBounce = Mathf.Pow((velocity.y),0) * 2;
-              float zBounce = Mathf.Pow((velocity.z),0) * 2;
+              float xBounce;
+              float yBounce;
+              float zBounce;
 
-              velocity.y = (velocity.y + yBounce) * -2;
-              velocity.x = (velocity.x + xBounce) * -2;
-              velocity.z = (velocity.z + zBounce) * -2;
+              if(velocity.x < 0){
+                    xBounce = 1;
+              }
+              else{
+                    xBounce = -1;}
+
+              if(velocity.y < 0){
+                    yBounce = 1;
+              }
+              else{
+                    yBounce = -1;}
+
+              if(velocity.z < 0){
+                    zBounce = 1;
+              }
+              else{
+                    zBounce = -1;}
+              //float xBounce = ((velocity.x) / (Mathf.Abs(velocity.x))) * 2;
+              //float yBounce = ((velocity.x) / (Mathf.Abs(velocity.y))) * 2;
+              //float zBounce = ((velocity.x) / (Mathf.Abs(velocity.z))) * 2;
+              Debug.Log(xBounce + " " + yBounce + " " + zBounce);
+              velocity.y = (velocity.y + yBounce) * -1;
+              velocity.x = (velocity.x + xBounce) * -1;
+              velocity.z = (velocity.z + zBounce) * -1;
               fieldKeep = false;
+              groundField = true;
           }
+
+        if(groundField && isGrounded)
+        {
+            velocity.x = 0;
+            velocity.y = 0;
+            velocity.z = 0;
+            groundField = false;
+        }
 
          
 
@@ -79,7 +110,7 @@ public class Player_Movement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        if((x == 0) && (velocity.x != 0))
+        /*if((x == 0) && (velocity.x != 0))
         {
             if(velocity.x < 0 )
             {
@@ -129,7 +160,7 @@ public class Player_Movement : MonoBehaviour
                     velocity.z -= 1;
                 }
             }
-        }
+        }*/
 
         Vector3 move = transform.right * x + transform.forward * z;
         if(!isFielded)
