@@ -16,11 +16,13 @@ public class Player_Movement : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     public LayerMask fieldMask;
-    public float fieldDistance = 0.7f;
+    public float fieldDistance = 1f;
     public Transform fieldCheck;
+    public Transform field;
 
     Vector3 startPt;
     Vector3 endPt;
+    Vector3 fieldNormal;
 
     Vector3 velocity;
     bool isGrounded;
@@ -46,12 +48,12 @@ public class Player_Movement : MonoBehaviour
 
         if(fieldKeep)
         {
-            isFielded = Physics.CheckCapsule(startPt, endPt, fieldDistance + 0.09f, fieldMask);
+            isFielded = Physics.CheckCapsule(startPt, endPt, fieldDistance + 0.3f, fieldMask);
         }
         else{
             isFielded = false;
             fieldTime += Time.deltaTime;
-            if(fieldTime > 0.1){
+            if(fieldTime > 0.00001f){
                 fieldKeep = true;
                 fieldTime = 0;
             }
@@ -84,9 +86,13 @@ public class Player_Movement : MonoBehaviour
               //float yBounce = ((velocity.x) / (Mathf.Abs(velocity.y))) * 2;
               //float zBounce = ((velocity.x) / (Mathf.Abs(velocity.z))) * 2;
               Debug.Log(xBounce + " " + yBounce + " " + zBounce);
-              velocity.y = (velocity.y + yBounce) * -1;
+              /*velocity.y = (velocity.y + yBounce) * -1;
               velocity.x = (velocity.x + xBounce) * -1;
-              velocity.z = (velocity.z + zBounce) * -1;
+              velocity.z = (velocity.z + zBounce) * -1;*/
+
+              Vector3 fieldNormal = (fieldCheck.position - field.position);
+              velocity = Vector3.Reflect(velocity , fieldNormal) / 60;
+
               fieldKeep = false;
               groundField = true;
           }
