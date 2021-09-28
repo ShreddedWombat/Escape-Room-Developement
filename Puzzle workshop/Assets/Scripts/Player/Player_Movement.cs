@@ -26,7 +26,7 @@ public class Player_Movement : MonoBehaviour
 
     Vector3 velocity;
     bool isGrounded;
-    bool isFielded;
+    bool isFielded = false;
     bool fieldKeep = true;
     bool groundField = false;
 
@@ -46,18 +46,20 @@ public class Player_Movement : MonoBehaviour
         startPt = new Vector3(fieldCheck.position.x, fieldCheck.position.y + (fieldDistance +1.5f), fieldCheck.position.z);
         endPt = new Vector3(fieldCheck.position.x, fieldCheck.position.y - (fieldDistance +1.5f), playerBody.position.z);
 
-        if(fieldKeep)
+        if(fieldKeep == true)
         {
             isFielded = Physics.CheckCapsule(startPt, endPt, fieldDistance + 0.3f, fieldMask);
+            /*if(isFielded){
+                groundField = true;
+            }*/
         }
         else{
             isFielded = false;
             fieldTime += Time.deltaTime;
-            if(fieldTime > 0.00001f){
-                fieldKeep = true;
-                fieldTime = 0;
-            }
+            
         }
+
+        
         //isFielded = Physics.CheckSphere(groundCheck.position, groundDistance, fieldMask);
           if(isFielded && fieldKeep)
           {
@@ -91,11 +93,18 @@ public class Player_Movement : MonoBehaviour
               velocity.z = (velocity.z + zBounce) * -1;*/
 
               Vector3 fieldNormal = (fieldCheck.position - field.position);
-              velocity = Vector3.Reflect(velocity , fieldNormal) / 60;
+              velocity = Vector3.Reflect(velocity , fieldNormal) / 40;
 
               fieldKeep = false;
               groundField = true;
           }
+
+        
+
+        if(fieldTime > 0.3 || groundField == false){
+                fieldKeep = true;
+                fieldTime = 0;
+            }
 
         if(groundField && isGrounded)
         {
