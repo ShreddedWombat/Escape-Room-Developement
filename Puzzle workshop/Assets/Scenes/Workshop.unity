@@ -8487,8 +8487,8 @@ GameObject:
   m_Component:
   - component: {fileID: 525312713}
   - component: {fileID: 525312712}
-  - component: {fileID: 525312714}
   - component: {fileID: 525312715}
+  - component: {fileID: 525312714}
   m_Layer: 0
   m_Name: playerBody
   m_TagString: Untagged
@@ -8541,7 +8541,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 525312711}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b03812b007dd2cd41b159633a9f5378d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b70e18cc0425e84bbc1baeae743310d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 525312712}
@@ -8550,18 +8550,14 @@ MonoBehaviour:
   gravity: -9.81
   jumpHeight: 3
   minSpd: 0
-  maxTme: 3
+  maxTme: 0.2
   groundCheck: {fileID: 698295609}
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
     m_Bits: 512
-  fieldMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  fieldDistance: 0.4
-  fieldCheck: {fileID: 1339988956}
-  field: {fileID: 1679092907}
+  isFielded: 0
+  groundField: 0
 --- !u!114 &525312715
 MonoBehaviour:
   m_ObjectHideFlags: 0

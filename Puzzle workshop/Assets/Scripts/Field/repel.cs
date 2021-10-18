@@ -24,7 +24,7 @@ public class repel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playMove = playerBody.GetComponent<Player_Movement2>;
+        playMove = playerBody.GetComponent<Player_Movement2>();
 
     }
 
