@@ -20,14 +20,13 @@ public class Player_Movement2 : MonoBehaviour
     
     
 
-    
+    public Vector3 velocity;
 
-    Vector3 velocity;
-    bool isGrounded;
+    public bool isGrounded;
     public bool isFielded = false;
     public bool groundField = false;
 
-    float fieldTime = 0;
+    
     // Update is called once per frame
     void Update()
     {
@@ -49,13 +48,7 @@ public class Player_Movement2 : MonoBehaviour
 
         
 
-        if(groundField && isGrounded)
-        {
-            velocity.x = 0;
-            velocity.y = 0;
-            velocity.z = 0;
-            groundField = false;
-        }
+        
 
         if(velocity.x != 0)
         {
