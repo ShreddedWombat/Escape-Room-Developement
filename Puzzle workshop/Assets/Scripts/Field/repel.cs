@@ -14,7 +14,7 @@ public class repel : MonoBehaviour
     
     private Player_Movement2 playMove;
 
-    bool fieldKeep;
+    bool fieldKeep = true;
     bool isFielded;
     
     Vector3 startPt;
@@ -87,12 +87,12 @@ public class repel : MonoBehaviour
               //float xBounce = ((velocity.x) / (Mathf.Abs(velocity.x))) * 2;
               //float yBounce = ((velocity.x) / (Mathf.Abs(velocity.y))) * 2;
               //float zBounce = ((velocity.x) / (Mathf.Abs(velocity.z))) * 2;
-              Debug.Log(xBounce + " " + yBounce + " " + zBounce);
+              //Debug.Log(xBounce + " " + yBounce + " " + zBounce);
               /*velocity.y = (velocity.y + yBounce) * -1;
               velocity.x = (velocity.x + xBounce) * -1;
               velocity.z = (velocity.z + zBounce) * -1;*/
 
-              Vector3 fieldNormal = (fieldCheck.position - playPoint);
+              Vector3 fieldNormal = (playPoint - fieldCheck.position);
               playMove.velocity = Vector3.Reflect(playMove.velocity , fieldNormal);
               if(playMove.velocity.y > 30)
               {
@@ -124,6 +124,7 @@ public class repel : MonoBehaviour
         Debug.Log(fieldNormal);
         Debug.Log(fieldCheck.position);
         Debug.Log(playPoint);
+        Debug.Log(velocity);
         //Debug.DrawLine(fieldCheck.position, playPoint, Color.white, 100000.0f, true);
     }
 }

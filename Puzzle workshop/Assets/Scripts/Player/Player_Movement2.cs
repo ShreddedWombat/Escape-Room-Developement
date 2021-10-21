@@ -72,57 +72,6 @@ public class Player_Movement2 : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        /*if((x == 0) && (velocity.x != 0))
-        {
-            if(velocity.x < 0 )
-            {
-                if(velocity.x > -1.01)
-                {
-                    velocity.x = 0;
-                }
-                else
-                {
-                    velocity.x += 1;
-                }    
-            }
-            else
-            {
-                if(velocity.x < 1.01)
-                {
-                    velocity.x = 0;
-                }
-                else
-                {
-                    velocity.x -= 1;
-                }
-            }
-        }
-
-        if((z == 0) && (velocity.z != 0))
-        {
-            if(velocity.z < 0 )
-            {
-                if(velocity.z > -1.01)
-                {
-                    velocity.z = 0;
-                }
-                else
-                {
-                    velocity.z += 1;
-                }    
-            }
-            else
-            {
-                if(velocity.z < 1.01)
-                {
-                    velocity.z = 0;
-                }
-                else
-                {
-                    velocity.z -= 1;
-                }
-            }
-        }*/
 
         Vector3 move = transform.right * x + transform.forward * z;
         if(!isFielded)
