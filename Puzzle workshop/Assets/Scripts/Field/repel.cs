@@ -93,7 +93,7 @@ public class repel : MonoBehaviour
               velocity.z = (velocity.z + zBounce) * -1;*/
 
               Vector3 fieldNormal = (playPoint - fieldCheck.position);
-              playMove.velocity = Vector3.Reflect(playMove.velocity , fieldNormal);
+              playMove.move = fieldNormal;
               if(playMove.velocity.y > 30)
               {
                     playMove.velocity.y = 30;
@@ -125,6 +125,7 @@ public class repel : MonoBehaviour
         Debug.Log(fieldCheck.position);
         Debug.Log(playPoint);
         Debug.Log(velocity);
+        Debug.Log(playMove.velocity);
         //Debug.DrawLine(fieldCheck.position, playPoint, Color.white, 100000.0f, true);
     }
 }

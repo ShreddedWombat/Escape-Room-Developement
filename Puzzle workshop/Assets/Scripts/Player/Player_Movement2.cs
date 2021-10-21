@@ -21,6 +21,7 @@ public class Player_Movement2 : MonoBehaviour
     
 
     public Vector3 velocity;
+    public Vector3 move;
 
     public bool isGrounded;
     public bool isFielded = false;
