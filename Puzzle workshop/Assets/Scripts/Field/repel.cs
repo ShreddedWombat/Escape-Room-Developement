@@ -71,7 +71,7 @@ public class repel : MonoBehaviour
               
 
           
-        if 
+        
           if(fieldTime > 0.13 || groundField == false){
                 fieldKeep = true;
                 fieldTime = 0;

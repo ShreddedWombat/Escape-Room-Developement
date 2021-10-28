@@ -2,33 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Movement2 : MonoBehaviour
+public class Player_Movement3 : MonoBehaviour
 {
 
     public CharacterController controller;
+
     public Transform playerBody;
     public Transform fieldCheck;
+    public Transform groundCheck;
 
     public float speed = 12f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
     public float minSpd = 0f;
     public float maxTme = 0.9f;
-
-    public Transform groundCheck;
     public float groundDistance = 0.4f;
+
     public LayerMask groundMask;
-    
-    public bool fieldKeep;
 
     public Vector3 velocity;
     public Vector3 move;
+    public Vector3 playPoint;
 
+    public bool fieldKeep;
     public bool isGrounded;
     public bool isFielded = false;
     public bool groundField = false;
 
-    public Vector3 playPoint;
+    //Locking Variable
+
+    public bool lockX = true;
+
+    //Functions
 
     void isGround(){
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -36,26 +41,19 @@ public class Player_Movement2 : MonoBehaviour
         if(isGrounded && velocity.y < 0)
         {
             velocity.y = -2.6f;
+        }
 
+        if(groundField && isGrounded)
+        {
+            velocity.x = 0;
+            velocity.y = 0;
+            velocity.z = 0;
+            groundField = false;
         }
     }
-    
-    // Update is called once per frame
-    void Update()
-    {
 
-        isGround();
-        
-
-        
-        //isFielded = Physics.CheckSphere(groundCheck.position, groundDistance, fieldMask);
-          
-
-        if(isFielded && fieldKeep)
-          {
-              Vector3 fieldNormal = (fieldCheck.position - playPoint);
-              velocity = Vector3.Reflect(velocity , fieldNormal) / 4;
-              if(velocity.y > 20)
+    void velocityLim(){
+        if(velocity.y > 20)
               {
                     velocity.y = 20;
               }
@@ -67,20 +65,6 @@ public class Player_Movement2 : MonoBehaviour
               {
                     velocity.z = 10;
               }
-
-              fieldKeep = false;
-              groundField = true;
-          }
-
-        
-        if(groundField && isGrounded)
-        {
-            velocity.x = 0;
-            velocity.y = 0;
-            velocity.z = 0;
-            groundField = false;
-            groundField = false;
-        }
 
         if(velocity.x != 0)
         {
@@ -94,6 +78,31 @@ public class Player_Movement2 : MonoBehaviour
         {
             velocity.z = Mathf.MoveTowards(velocity.z, minSpd, maxTme * Time.deltaTime);
         }
+    }
+    
+    void flipper(){
+        if(isFielded && fieldKeep){
+            Vector3 fieldNormal = (fieldCheck.position - playPoint);
+            velocity = Vector3.Reflect(velocity , fieldNormal) / 4;
+            fieldKeep = false;
+            groundField = true;
+        }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        isGround();
+        
+        velocityLim();
+
+        flipper();
 
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
@@ -108,10 +117,11 @@ public class Player_Movement2 : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z;
         if(!isFielded)
         {
-        controller.Move(move * speed * Time.deltaTime);
+            controller.Move(move * speed * Time.deltaTime);
         }
         velocity.y += gravity * Time.deltaTime * 2;
 
         controller.Move(velocity * Time.deltaTime);
+
     }
 }
