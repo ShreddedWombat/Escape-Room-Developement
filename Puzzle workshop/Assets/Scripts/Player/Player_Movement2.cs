@@ -7,18 +7,19 @@ public class Player_Movement2 : MonoBehaviour
 
     public CharacterController controller;
     public Transform playerBody;
+    public Transform fieldCheck;
 
     public float speed = 12f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
     public float minSpd = 0f;
-    public float maxTme = 0.2f;
+    public float maxTme = 0.9f;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     
-    
+    public bool fieldKeep;
 
     public Vector3 velocity;
     public Vector3 move;
@@ -26,6 +27,8 @@ public class Player_Movement2 : MonoBehaviour
     public bool isGrounded;
     public bool isFielded = false;
     public bool groundField = false;
+
+    public Vector3 playPoint;
 
     
     // Update is called once per frame
@@ -45,11 +48,36 @@ public class Player_Movement2 : MonoBehaviour
         //isFielded = Physics.CheckSphere(groundCheck.position, groundDistance, fieldMask);
           
 
-        
+        if(isFielded && fieldKeep)
+          {
+              Vector3 fieldNormal = (fieldCheck.position - playPoint);
+              velocity = Vector3.Reflect(velocity , fieldNormal) / 4;
+              if(velocity.y > 20)
+              {
+                    velocity.y = 20;
+              }
+              if(velocity.x > 10)
+              {
+                    velocity.x = 10;
+              }
+              if(velocity.z > 10)
+              {
+                    velocity.z = 10;
+              }
+
+              fieldKeep = false;
+              groundField = true;
+          }
 
         
-
-        
+        if(groundField && isGrounded)
+        {
+            velocity.x = 0;
+            velocity.y = 0;
+            velocity.z = 0;
+            groundField = false;
+            groundField = false;
+        }
 
         if(velocity.x != 0)
         {
