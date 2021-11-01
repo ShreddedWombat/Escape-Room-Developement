@@ -35,6 +35,33 @@ public class Player_Movement3 : MonoBehaviour
 
     //Functions
 
+    void velocityGroup(){
+        if(velocity.y > 20)
+              {
+                    velocity.y = 20;
+              }
+        if(velocity.x > 10)
+              {
+                    velocity.x = 10;
+              }
+        if(velocity.z > 10)
+              {
+                    velocity.z = 10;
+              }
+        if(velocity.y < -20)
+              {
+                    velocity.y = -20;
+              }
+        if(velocity.x < -10)
+              {
+                    velocity.x = -10;
+              }
+        if(velocity.z < -10)
+              {
+                    velocity.z = -10;
+              }
+    }
+
     void isGround(){
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
@@ -53,18 +80,8 @@ public class Player_Movement3 : MonoBehaviour
     }
 
     void velocityLim(){
-        if(velocity.y > 20)
-              {
-                    velocity.y = 20;
-              }
-              if(velocity.x > 10)
-              {
-                    velocity.x = 10;
-              }
-              if(velocity.z > 10)
-              {
-                    velocity.z = 10;
-              }
+        
+        velocityGroup();
 
         if(velocity.x != 0)
         {
@@ -83,10 +100,20 @@ public class Player_Movement3 : MonoBehaviour
     void flipper(){
         if(isFielded && fieldKeep){
             Vector3 fieldNormal = (fieldCheck.position - playPoint);
-            velocity = Vector3.Reflect(velocity , fieldNormal) / 4;
+            velocity = Vector3.Reflect(velocity , fieldNormal) / 40;
+            velocity.y += 2f;
             fieldKeep = false;
             groundField = true;
         }
+    }
+
+    void funcCall(){
+        
+        isGround();
+        
+        velocityLim();
+
+        flipper();
     }
 
     // Start is called before the first frame update
@@ -98,12 +125,8 @@ public class Player_Movement3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isGround();
+        funcCall();
         
-        velocityLim();
-
-        flipper();
-
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
