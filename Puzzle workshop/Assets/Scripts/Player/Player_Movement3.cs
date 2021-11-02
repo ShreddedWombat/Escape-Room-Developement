@@ -24,10 +24,12 @@ public class Player_Movement3 : MonoBehaviour
     public Vector3 move;
     public Vector3 playPoint;
 
-    public bool fieldKeep;
+    public bool fieldKeep = true;
     public bool isGrounded;
     public bool isFielded = false;
     public bool groundField = false;
+
+    float fieldTime = 0;
 
     //Locking Variable
 
@@ -100,11 +102,22 @@ public class Player_Movement3 : MonoBehaviour
     void flipper(){
         if(isFielded && fieldKeep){
             Vector3 fieldNormal = (fieldCheck.position - playPoint);
-            velocity = Vector3.Reflect(velocity , fieldNormal) / 40;
+            velocity = Vector3.Reflect(velocity , fieldNormal) / 80;
             velocity.y += 2f;
             fieldKeep = false;
             groundField = true;
         }
+        else{
+            fieldTime += Time.deltaTime;
+        }
+
+        if(fieldTime > 0.13 || groundField == false){
+            fieldKeep = true;
+            fieldTime = 0;
+            }
+        /*if(!isFielded && !fieldKeep){
+            fieldKeep = true;
+        }*/
     }
 
     void funcCall(){
@@ -119,7 +132,7 @@ public class Player_Movement3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        fieldKeep = true;
     }
 
     // Update is called once per frame

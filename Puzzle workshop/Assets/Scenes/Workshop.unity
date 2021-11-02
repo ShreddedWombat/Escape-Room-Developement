@@ -7998,6 +7998,7 @@ MonoBehaviour:
   fieldDistance: 1
   fieldCheck: {fileID: 1339988956}
   collPoint: {fileID: 0}
+  fieldKeep: 0
   groundField: 0
 --- !u!1 &362762330
 GameObject:
@@ -23674,7 +23675,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1679092906}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebe13def3c49a83428d9b3b4e9c248f9, type: 3}
   m_Name: 
@@ -23687,6 +23688,7 @@ MonoBehaviour:
   fieldDistance: 1
   fieldCheck: {fileID: 1339988956}
   collPoint: {fileID: 0}
+  fieldKeep: 0
   groundField: 0
 --- !u!1 &1704383280
 GameObject:

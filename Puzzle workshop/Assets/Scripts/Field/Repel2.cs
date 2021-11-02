@@ -15,7 +15,7 @@ public class Repel2 : MonoBehaviour
     private Player_Movement3 playMove;
     private bool lockY = false;
 
-    bool fieldKeep;
+    public bool fieldKeep;
     bool isFielded;
     bool lockX;
     
@@ -25,7 +25,7 @@ public class Repel2 : MonoBehaviour
     Vector3 velocity;
     Vector3 playPoint;
 
-    float fieldTime = 0;
+    
     public bool groundField = false;
 
 
@@ -72,13 +72,13 @@ public class Repel2 : MonoBehaviour
     {
         playMove = playerBody.GetComponent<Player_Movement3>();
         collPoint = fieldBody.GetComponent<Collider>();
-        
+        lockSet();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        lockX = playMove.lockX;
         
 
         
@@ -95,17 +95,10 @@ public class Repel2 : MonoBehaviour
             if(fieldKeep == true){
        
                 isFielded = Physics.CheckCapsule(startPt, endPt, fieldDistance + 0.3f, fieldMask);
-            
-            }
-            else{
-                isFielded = false;
-                fieldTime += Time.deltaTime;
             }
 
-            if(fieldTime > 0.13 || groundField == false){
-                fieldKeep = true;
-                fieldTime = 0;
-            }
+            
+
         }
 
         
