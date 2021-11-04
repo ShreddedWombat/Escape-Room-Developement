@@ -100,18 +100,19 @@ public class Player_Movement3 : MonoBehaviour
     }
     
     void flipper(){
-        if(isFielded && fieldKeep){
+        if(isFielded && fieldKeep && lockX == false){
             Vector3 fieldNormal = (fieldCheck.position - playPoint);
-            velocity = Vector3.Reflect(velocity , fieldNormal) / 80;
+            velocity = Vector3.Reflect(velocity , fieldNormal) / 40;
             velocity.y += 2f;
             fieldKeep = false;
             groundField = true;
+            isFielded = false;
         }
         else{
             fieldTime += Time.deltaTime;
         }
 
-        if(fieldTime > 0.13 || groundField == false){
+        if(fieldTime > 0.3 || groundField == false){
             fieldKeep = true;
             fieldTime = 0;
             }
@@ -159,5 +160,6 @@ public class Player_Movement3 : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
 
+        Debug.Log(playPoint);
     }
 }

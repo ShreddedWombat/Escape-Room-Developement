@@ -8,7 +8,7 @@ public class Repel2 : MonoBehaviour
     public GameObject playerBody;
     public GameObject fieldBody;
     public LayerMask fieldMask;
-    public float fieldDistance = 1f;
+    public float fieldDistance = 0.5f;
     public Transform fieldCheck;
     public Collider collPoint;
     
@@ -28,6 +28,7 @@ public class Repel2 : MonoBehaviour
     
     public bool groundField = false;
 
+    bool fieldLock = false;
 
 
 
@@ -45,13 +46,13 @@ public class Repel2 : MonoBehaviour
         fieldCheck = playMove.fieldCheck;
         lockX = playMove.lockX;
 
-        if(isFielded){
+        if(isFielded && fieldLock){
             
 
             if(playMove.lockX == false){
                 playMove.playPoint = playPoint;
                 playMove.isFielded = isFielded;
-                
+                fieldLock = false;
             }
 
             lockY = true;
@@ -60,9 +61,10 @@ public class Repel2 : MonoBehaviour
         }
 
         if(!isFielded){
-            playMove.isFielded = isFielded;
+            playMove.isFielded = false;
             playMove.lockX = true;
             lockY = false;
+            fieldLock = true;
         }
 
     }
@@ -89,8 +91,8 @@ public class Repel2 : MonoBehaviour
 
             playPoint = Physics.ClosestPoint(playerBody.transform.position, collPoint, fieldBody.transform.position, fieldBody.transform.rotation);
 
-            startPt = new Vector3(fieldCheck.position.x, fieldCheck.position.y + (fieldDistance +1.5f), fieldCheck.position.z);
-            endPt = new Vector3(fieldCheck.position.x, fieldCheck.position.y - (fieldDistance +1.5f), playerBody.transform.position.z);
+            startPt = new Vector3(fieldCheck.position.x, fieldCheck.position.y + (fieldDistance), fieldCheck.position.z);
+            endPt = new Vector3(fieldCheck.position.x, fieldCheck.position.y - (fieldDistance), fieldCheck.position.z);
 
             if(fieldKeep == true){
        

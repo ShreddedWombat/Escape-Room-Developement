@@ -72,10 +72,10 @@ public class repel : MonoBehaviour
 
           
         
-          if(fieldTime > 0.13 || groundField == false){
-                fieldKeep = true;
-                fieldTime = 0;
-            }
+        if(fieldTime > 0.13 || groundField == false){
+            fieldKeep = true;
+            fieldTime = 0;
+        }
 
         playMove.isFielded = isFielded;
         playMove.velocity = velocity;
