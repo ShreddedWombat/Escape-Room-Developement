@@ -73,7 +73,7 @@ public class Repel2 : MonoBehaviour
     void Start()
     {
         playMove = playerBody.GetComponent<Player_Movement3>();
-        collPoint = fieldBody.GetComponent<Collider>();
+        //collPoint = fieldBody.GetComponent<Collider>();
         lockSet();
     }
 
@@ -87,10 +87,13 @@ public class Repel2 : MonoBehaviour
         
         if(lockX == true || lockY == true){
 
-            lockSet();
+            
 
             playPoint = Physics.ClosestPoint(playerBody.transform.position, collPoint, fieldBody.transform.position, fieldBody.transform.rotation);
 
+            lockSet();
+
+            Debug.Log(playPoint);
             startPt = new Vector3(fieldCheck.position.x, fieldCheck.position.y + (fieldDistance), fieldCheck.position.z);
             endPt = new Vector3(fieldCheck.position.x, fieldCheck.position.y - (fieldDistance), fieldCheck.position.z);
 
