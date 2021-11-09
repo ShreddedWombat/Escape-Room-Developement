@@ -30,6 +30,7 @@ public class Player_Movement3 : MonoBehaviour
     public bool groundField = false;
 
     float fieldTime = 0;
+    float groundTime = 0;
 
     //Locking Variable
 
@@ -74,10 +75,16 @@ public class Player_Movement3 : MonoBehaviour
 
         if(groundField && isGrounded)
         {
+        groundTime += Time.deltaTime;
+
+        if(groundTime > 0.3){
             velocity.x = 0;
             velocity.y = 0;
             velocity.z = 0;
             groundField = false;
+            groundTime = 0;
+            
+        }
         }
     }
 
@@ -100,13 +107,14 @@ public class Player_Movement3 : MonoBehaviour
     }
     
     void flipper(){
-        if(isFielded && fieldKeep && lockX == false){
-            Vector3 fieldNormal = (fieldCheck.position - playPoint);
-            velocity = Vector3.Reflect(velocity , fieldNormal) / 40;
+        if(isFielded && fieldKeep && !lockX){
+            Vector3 fieldNormal = (playPoint - playerBody.position);
+            velocity = Vector3.Reflect(velocity , fieldNormal) * 8;
             velocity.y += 2f;
             fieldKeep = false;
             groundField = true;
             isFielded = false;
+            lockX = true;
         }
         else{
             fieldTime += Time.deltaTime;

@@ -42,9 +42,7 @@ public class Repel2 : MonoBehaviour
         
         groundField = playMove.groundField;
         fieldKeep = playMove.fieldKeep;
-        playPoint = playMove.playPoint;
         fieldCheck = playMove.fieldCheck;
-        lockX = playMove.lockX;
 
         if(isFielded && fieldLock){
             
@@ -62,7 +60,7 @@ public class Repel2 : MonoBehaviour
 
         if(!isFielded){
             playMove.isFielded = false;
-            playMove.lockX = true;
+            
             lockY = false;
             fieldLock = true;
         }
@@ -99,7 +97,7 @@ public class Repel2 : MonoBehaviour
 
             if(fieldKeep == true){
        
-                isFielded = Physics.CheckCapsule(startPt, endPt, fieldDistance + 0.3f, fieldMask);
+                isFielded = Physics.CheckCapsule(startPt, endPt, fieldDistance, fieldMask);
             }
 
             
