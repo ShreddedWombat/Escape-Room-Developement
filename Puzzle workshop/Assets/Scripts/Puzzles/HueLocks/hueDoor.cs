@@ -5,7 +5,6 @@ using UnityEngine;
 public class hueDoor : MonoBehaviour
 {
     int i = 0; 
-    int active = 0;
 
     public Transform Door;
 
@@ -36,14 +35,12 @@ public class hueDoor : MonoBehaviour
             if (i <= 50) {
                 Door.transform.Translate(Vector3.up / 10);
                 i++;
-                active = 1;
             }
             }
         if(hueLock.Corrected == false || hueLock1.Corrected == false || hueLock2.Corrected == false) {
             if (i >= 0) {
                 Door.transform.Translate(Vector3.down / 10);
                 i--;
-                active = 0;
             }
             
           }  

@@ -7,15 +7,4 @@ public class ObjectVal : MonoBehaviour
 
     public float operValue;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

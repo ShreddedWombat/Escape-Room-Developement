@@ -5,7 +5,6 @@ using UnityEngine;
 public class Door3x3 : MonoBehaviour
 {
     int i = 0; 
-    int active = 0;
 
     public Transform Door;
 
@@ -53,14 +52,12 @@ public class Door3x3 : MonoBehaviour
             if (i <= 50) {
                 Door.transform.Translate(Vector3.up / 10);
                 i++;
-                active = 1;
             }
             }
         if(pattern.Corrected == false || pattern1.Corrected == false || pattern2.Corrected == false || pattern3.Corrected == false || pattern4.Corrected == false || pattern5.Corrected == false || pattern6.Corrected == false || pattern7.Corrected == false || pattern8.Corrected == false) {
             if (i >= 0) {
                 Door.transform.Translate(Vector3.down / 10);
                 i--;
-                active = 0;
             }
             
           }  

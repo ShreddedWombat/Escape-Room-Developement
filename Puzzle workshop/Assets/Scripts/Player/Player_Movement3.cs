@@ -168,6 +168,11 @@ public class Player_Movement3 : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
 
+        if (Input.GetButtonDown("Interact"))
+        {
+           
+        }
+
         //Debug.Log(playPoint);
     }
 }

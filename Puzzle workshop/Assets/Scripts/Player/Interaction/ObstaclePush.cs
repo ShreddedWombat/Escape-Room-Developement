@@ -1,3 +1,5 @@
+//This particular script was developed by Brody Smith, and is used with his full permission.
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
