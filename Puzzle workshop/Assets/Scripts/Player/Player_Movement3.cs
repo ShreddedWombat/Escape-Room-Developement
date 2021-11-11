@@ -168,6 +168,6 @@ public class Player_Movement3 : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
 
-        Debug.Log(playPoint);
+        //Debug.Log(playPoint);
     }
 }
