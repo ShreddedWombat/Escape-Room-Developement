@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class hueLock_3 : MonoBehaviour
 {
+    //functionally identical to hueLock_1
+
 
     public Color32 opt1;
     public Color32 opt2;

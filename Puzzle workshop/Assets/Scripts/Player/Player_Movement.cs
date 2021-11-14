@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class Player_Movement : MonoBehaviour
 {
-
+    //declares the Player Position and the Character Controller, which takes movement inputs
     public CharacterController controller;
     public Transform playerBody;
 
+    //defines the variables that are used in player movement
     public float speed = 12f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
     public float minSpd = 0f;
     public float maxTme = 0.2f;
 
+    //defines the variables and layers used in collision detection
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
@@ -22,20 +24,27 @@ public class Player_Movement : MonoBehaviour
     public Transform fieldCheck;
     public Transform field;
 
+    //Vectors used for collision detection
     Vector3 startPt;
     Vector3 endPt;
     Vector3 fieldNormal;
 
+    //Velocity Vector
     Vector3 velocity;
+
+    //Booleans used for collision detection
     bool isGrounded;
     bool isFielded = false;
     bool fieldKeep = true;
     bool groundField = false;
 
+    //Time Float for (unfinished) forcefields
     float fieldTime = 0;
+
     // Update is called once per frame
     void Update()
     {
+        //detects when player is touching the ground, and sets y velocity to a constant to prevent excess accelleration
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
@@ -45,6 +54,7 @@ public class Player_Movement : MonoBehaviour
 
         }
 
+        //checks for any force field objects within a capsule around the player
         startPt = new Vector3(fieldCheck.position.x, fieldCheck.position.y + (fieldDistance +1.5f), fieldCheck.position.z);
         endPt = new Vector3(fieldCheck.position.x, fieldCheck.position.y - (fieldDistance +1.5f), playerBody.position.z);
 
@@ -61,6 +71,7 @@ public class Player_Movement : MonoBehaviour
             
         }
 
+        //(UNFINISHED) reflects player's velocity depending on the angle of collision
         
         //isFielded = Physics.CheckSphere(groundCheck.position, groundDistance, fieldMask);
           if(isFielded && fieldKeep)
@@ -105,7 +116,7 @@ public class Player_Movement : MonoBehaviour
               groundField = true;
           }
 
-        
+        //If statements to manage and reset velocities when required
 
         if(fieldTime > 0.3 || groundField == false){
                 fieldKeep = true;
@@ -133,67 +144,18 @@ public class Player_Movement : MonoBehaviour
             velocity.z = Mathf.MoveTowards(velocity.z, minSpd, maxTme * Time.deltaTime);
         }
 
+        //gets spacebar input and jumps the player
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
 
-        
+        //gets WASD input for the character controller
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        /*if((x == 0) && (velocity.x != 0))
-        {
-            if(velocity.x < 0 )
-            {
-                if(velocity.x > -1.01)
-                {
-                    velocity.x = 0;
-                }
-                else
-                {
-                    velocity.x += 1;
-                }    
-            }
-            else
-            {
-                if(velocity.x < 1.01)
-                {
-                    velocity.x = 0;
-                }
-                else
-                {
-                    velocity.x -= 1;
-                }
-            }
-        }
-
-        if((z == 0) && (velocity.z != 0))
-        {
-            if(velocity.z < 0 )
-            {
-                if(velocity.z > -1.01)
-                {
-                    velocity.z = 0;
-                }
-                else
-                {
-                    velocity.z += 1;
-                }    
-            }
-            else
-            {
-                if(velocity.z < 1.01)
-                {
-                    velocity.z = 0;
-                }
-                else
-                {
-                    velocity.z -= 1;
-                }
-            }
-        }*/
-
+       
+        //passes correct movement values to the character controller
         Vector3 move = transform.right * x + transform.forward * z;
         if(!isFielded)
         {

@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Door3x3 : MonoBehaviour
 {
+    //int for door movement
     int i = 0; 
 
+    //declares the door position to be referenced through the script
     public Transform Door;
 
+    //finds and gets all the buttons in the grid.
     public GameObject _3x3But;
     private _3x3Pattern pattern;
     public GameObject _3x3But1;
@@ -29,7 +32,7 @@ public class Door3x3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //gets and accesses all of the script components of the buttons.
         pattern = _3x3But.GetComponent<_3x3Pattern>(); 
         pattern1 = _3x3But1.GetComponent<_3x3Pattern>(); 
         pattern2 = _3x3But2.GetComponent<_3x3Pattern>(); 
@@ -47,14 +50,17 @@ public class Door3x3 : MonoBehaviour
     void Update()
     {
         
-        
+        //checks if ALL buttons are correct
         if(pattern.Corrected == true && pattern1.Corrected == true && pattern2.Corrected == true && pattern3.Corrected == true && pattern4.Corrected == true && pattern5.Corrected == true && pattern6.Corrected == true && pattern7.Corrected == true && pattern8.Corrected == true) {
+            //moves the door up (relatively) slowly and smoothly, stopping at a specific point.
             if (i <= 50) {
                 Door.transform.Translate(Vector3.up / 10);
                 i++;
             }
             }
-        if(pattern.Corrected == false || pattern1.Corrected == false || pattern2.Corrected == false || pattern3.Corrected == false || pattern4.Corrected == false || pattern5.Corrected == false || pattern6.Corrected == false || pattern7.Corrected == false || pattern8.Corrected == false) {
+        //checks if ONLY ONE button is incorrect
+        if (pattern.Corrected == false || pattern1.Corrected == false || pattern2.Corrected == false || pattern3.Corrected == false || pattern4.Corrected == false || pattern5.Corrected == false || pattern6.Corrected == false || pattern7.Corrected == false || pattern8.Corrected == false) {
+            //moves the door down (relatively) slowly and smoothly, stopping at a specific point.
             if (i >= 0) {
                 Door.transform.Translate(Vector3.down / 10);
                 i--;

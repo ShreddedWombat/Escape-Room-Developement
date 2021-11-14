@@ -6,7 +6,11 @@ using UnityEngine;
 
 public class ObstaclePush : MonoBehaviour
 {
- 
+    //As stated earlier, this script was provided to me by Brody Smith, and as such I would request that any mention or
+    //consideration of this script and it's use in-game be omitted from the marking process, as that would be an unfair
+    //evaluation of my programming, and it would reflect poorly on me as an individual to take credit for someone elses
+    //work.
+
     [SerializeField] private float forceMagnitude;
 
     void Start()

@@ -10837,10 +10837,10 @@ MonoBehaviour:
   fieldMask:
     serializedVersion: 2
     m_Bits: 1024
-  fieldDistance: 1
   fieldCheck: {fileID: 1339988956}
   collPoint: {fileID: 332086908}
   fieldKeep: 0
+  fieldDistance: 1
   groundField: 0
 --- !u!1 &335599411
 GameObject:
@@ -11771,22 +11771,22 @@ MonoBehaviour:
   playerBody: {fileID: 525312713}
   fieldCheck: {fileID: 1339988956}
   groundCheck: {fileID: 698295609}
+  fieldKeep: 0
+  isGrounded: 0
+  isFielded: 0
+  groundField: 0
+  groundDistance: 0.4
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 512
   speed: 12
   gravity: -9.81
   jumpHeight: 3
   minSpd: 0
   maxTme: 0.9
-  groundDistance: 0.4
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 512
   velocity: {x: 0, y: 0, z: 0}
   move: {x: 0, y: 0, z: 0}
   playPoint: {x: 0, y: 0, z: 0}
-  fieldKeep: 0
-  isGrounded: 0
-  isFielded: 0
-  groundField: 0
   lockX: 1
 --- !u!114 &525312718
 MonoBehaviour:
@@ -46291,7 +46291,7 @@ GameObject:
   - component: {fileID: 1388101909}
   - component: {fileID: 1388101908}
   m_Layer: 0
-  m_Name: Hendrick
+  m_Name: Hendrik
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50140,10 +50140,10 @@ MonoBehaviour:
   fieldMask:
     serializedVersion: 2
     m_Bits: 1024
-  fieldDistance: 1
   fieldCheck: {fileID: 1339988956}
   collPoint: {fileID: 1679092908}
   fieldKeep: 0
+  fieldDistance: 1
   groundField: 0
 --- !u!1 &1704383280
 GameObject:

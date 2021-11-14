@@ -4,25 +4,35 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
+    //defines the positions and layers referenced in the script
     public Transform playerPos;
     public Transform dest;
     public Transform drop;
     public LayerMask ground;
+
+    //defines the variables and booleans used in the script
     public float rad = 1.5f;
     bool tog = false;
     bool again = false;
     bool groundColl = false;
     int distance = 7;
 
+    //The force that a player outputs when throwing an object (note: boxes are too heavy to throw)
     public float throwForce = 600;
-    Vector3 objectPos;
+
+   
+
 
     void OnDrawGizmosSelected()
     {
+        //function to draw the radius when selected in the editor, makes it easy to see player interaction distances
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, rad);
     }
 
+    //if the left mouse button is pressed and the player is close enough AND the player is looking at the object,
+    //then the collider and gravity turn off while collision detection stays on.
+    //also activate the (tog) bool.
     void OnMouseDown()
     { 
         
@@ -38,7 +48,7 @@ public class Pickup : MonoBehaviour
     }
 
     
-
+    //checks for ant ground-layer objects within a sphere around the object.
     void isGrounded(){
         if(Physics.CheckSphere(transform.position, rad, ground))
         {
@@ -56,13 +66,16 @@ public class Pickup : MonoBehaviour
 
         if (tog)
         {
+            //Constantly updates the object's position to the player's "hand". Sets the "hand" as a parent object,
+            //and disables velocity, both standard and angular.
             GetComponent<Rigidbody>().velocity = Vector3.zero;
             GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             transform.position = dest.position;
             transform.parent = dest;
 
 
-
+            //if the left mouse button is pressed while holding an object, and the object isn't colliding with any "ground" objects,
+            //then the held object will be dropped.
             if (Input.GetButtonDown("Fire1") && !groundColl)
             {
                 if (again)
@@ -74,11 +87,15 @@ public class Pickup : MonoBehaviour
                     tog = false;
                     again = false;
                 }
+                //this "agian" variable simply means that an in-game frame must pass before the drop code can be run.
+                //Implemented to prevent objects from being grabbed and immediately dropped.
                 else if (!again)
                 {
                     again = true;
                 }
             }
+
+            //Works the same as the above statement, except it adds a forwards force to the object to achieve a "throw".
             else if (Input.GetButtonDown("Fire2") && !groundColl)
             {
                 if (again)
