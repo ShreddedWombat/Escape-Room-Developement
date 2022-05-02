@@ -8,6 +8,7 @@ public class Pickup : MonoBehaviour
     public Transform playerPos;
     public Transform dest;
     public Transform drop;
+    public Transform Grabber;
     public LayerMask ground;
 
     //defines the variables and booleans used in the script
@@ -27,7 +28,7 @@ public class Pickup : MonoBehaviour
     {
         //function to draw the radius when selected in the editor, makes it easy to see player interaction distances
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, rad);
+        Gizmos.DrawWireSphere(Grabber.position, rad);
     }
 
     //if the left mouse button is pressed and the player is close enough AND the player is looking at the object,
@@ -36,7 +37,7 @@ public class Pickup : MonoBehaviour
     void OnMouseDown()
     { 
         
-        if (Vector3.Distance(playerPos.position, transform.position) <= distance && !tog)
+        if (Vector3.Distance(playerPos.position, Grabber.position) <= distance && !tog)
         {
             GetComponent<Collider>().enabled = false;
             GetComponent<Rigidbody>().useGravity = false;
@@ -50,7 +51,7 @@ public class Pickup : MonoBehaviour
     
     //checks for ant ground-layer objects within a sphere around the object.
     void isGrounded(){
-        if(Physics.CheckSphere(transform.position, rad, ground))
+        if(Physics.CheckSphere(Grabber.position, rad, ground))
         {
             groundColl = true;
         }
@@ -70,7 +71,7 @@ public class Pickup : MonoBehaviour
             //and disables velocity, both standard and angular.
             GetComponent<Rigidbody>().velocity = Vector3.zero;
             GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-            transform.position = dest.position;
+            transform.position = dest.position - Grabber.position;
             transform.parent = dest;
 
 
@@ -79,15 +80,15 @@ public class Pickup : MonoBehaviour
             if (Input.GetButtonDown("Fire1") && !groundColl)
             {
                 if (again)
-                {
-                    transform.position = drop.position;
+                { 
+                    transform.position = drop.position - Grabber.position;
                     transform.parent = null;
                     GetComponent<Rigidbody>().useGravity = true;
                     GetComponent<Collider>().enabled = true;
                     tog = false;
                     again = false;
                 }
-                //this "agian" variable simply means that an in-game frame must pass before the drop code can be run.
+                //this "again" variable simply means that an in-game frame must pass before the drop code can be run.
                 //Implemented to prevent objects from being grabbed and immediately dropped.
                 else if (!again)
                 {
@@ -100,7 +101,7 @@ public class Pickup : MonoBehaviour
             {
                 if (again)
                 {
-                    transform.position = dest.position;
+                    transform.position = dest.position-Grabber.position;
                     transform.parent = null;
                     GetComponent<Rigidbody>().useGravity = true;
                     GetComponent<Collider>().enabled = true;
