@@ -51,7 +51,7 @@ public class Pickup_Mk2 : MonoBehaviour
     void Update()
     {
         isGrounded();
-        hold = holder.script.hold;
+        hold = holder.GetComponent<Interactable>().hold;
 
         if (Vector3.Distance(playerPos.position, transform.position) <= distance && !tog && hold)
         {
