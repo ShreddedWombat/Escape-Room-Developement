@@ -15,6 +15,9 @@ public class Mouse_Look : MonoBehaviour
     //Position of the Player
     public Transform playerBody;
 
+    //boolean to prevent multiple items held
+    public bool holding = false;
+
     //variable for rotation management
     float xRotation = 0f;
 
