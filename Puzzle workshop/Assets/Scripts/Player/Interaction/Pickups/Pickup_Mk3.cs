@@ -71,6 +71,7 @@ public class Pickup_Mk3 : MonoBehaviour
             GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             transform.position = dest.position;
             transform.parent = dest;*/
+            GetComponent<Rigidbody>().isKinematic = true;
             transform.position = Vector3.MoveTowards(transform.position, dest.position, speed * Time.deltaTime);
 
 
@@ -85,6 +86,7 @@ public class Pickup_Mk3 : MonoBehaviour
                     GetComponent<Collider>().enabled = true;*/
                     GetComponent<Rigidbody>().useGravity = true;
                     theCamera.GetComponent<Mouse_Look>().holding = false;
+                    GetComponent<Rigidbody>().isKinematic = false;
                     tog = false;
                     again = false;
 
@@ -107,6 +109,7 @@ public class Pickup_Mk3 : MonoBehaviour
                     GetComponent<Collider>().enabled = true;*/
                     GetComponent<Rigidbody>().useGravity = true;
                     theCamera.GetComponent<Mouse_Look>().holding = false;
+                    GetComponent<Rigidbody>().isKinematic = false;
                     tog = false;
                     again = false;
                     GetComponent<Rigidbody>().AddForce(dest.forward * throwForce);

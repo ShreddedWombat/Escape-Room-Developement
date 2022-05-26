@@ -20,7 +20,7 @@ public class Pickup_Mk4 : MonoBehaviour
     bool groundColl = false;
     public bool holding;
     public int distance;
-    public int speed;
+    public float speed;
 
     Rigidbody selfBody;
 
@@ -33,6 +33,7 @@ public class Pickup_Mk4 : MonoBehaviour
         {
             tog = true;
             theCamera.GetComponent<Mouse_Look>().holding = true;
+            //GetComponent<Rigidbody>().isKinematic = true;
             GetComponent<Rigidbody>().useGravity = false;
         }
     }
@@ -76,7 +77,7 @@ public class Pickup_Mk4 : MonoBehaviour
             transform.position = dest.position;
             transform.parent = dest;*/
             //transform.position = Vector3.MoveTowards(transform.position, dest.position, speed * Time.deltaTime);
-            selfBody.MovePosition(dest.position * speed * Time.deltaTime);
+            selfBody.MovePosition(dest.position);
 
 
             //if the left mouse button is pressed while holding an object, and the object isn't colliding with any "ground" objects,
@@ -90,6 +91,7 @@ public class Pickup_Mk4 : MonoBehaviour
                     GetComponent<Collider>().enabled = true;*/
                     GetComponent<Rigidbody>().useGravity = true;
                     theCamera.GetComponent<Mouse_Look>().holding = false;
+                    //GetComponent<Rigidbody>().isKinematic = false;
                     tog = false;
                     again = false;
 
@@ -112,6 +114,7 @@ public class Pickup_Mk4 : MonoBehaviour
                     GetComponent<Collider>().enabled = true;*/
                     GetComponent<Rigidbody>().useGravity = true;
                     theCamera.GetComponent<Mouse_Look>().holding = false;
+                    //GetComponent<Rigidbody>().isKinematic = false;
                     tog = false;
                     again = false;
                     GetComponent<Rigidbody>().AddForce(dest.forward * throwForce);
