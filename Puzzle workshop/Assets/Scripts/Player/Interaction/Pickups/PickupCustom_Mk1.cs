@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickupCustom_Mk1 : MonoBehaviour
 {
-    public float grabRange = 5;
+    public float grabRange = 8;
     public float moveForce = 250;
     public Transform grabParent;
     private GameObject objectGrabbed = null;
@@ -12,19 +12,24 @@ public class PickupCustom_Mk1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Interact"))
+        if (Input.GetButtonDown("Fire1"))
         {
             if (objectGrabbed == null)
             {
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, grabRange))
                 {
+                    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
                     HoldObject(hit.transform.gameObject);
+                }
+                else
+                {
+                    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
                 }
             }
             else
             {
-
+                DropGrabbed();
             }
         }
 
