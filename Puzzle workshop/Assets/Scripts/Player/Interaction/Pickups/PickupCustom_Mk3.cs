@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickupCustom_Mk2 : MonoBehaviour
+public class PickupCustom_Mk3 : MonoBehaviour
 {
+
     [SerializeField] private LayerMask PickupMask;
     [SerializeField] private Camera PlayerCamera;
     [SerializeField] private Transform PickupTarget;
+    [SerializeField] private Rigidbody Dest;
+    [SerializeField] private Rigidbody selectBody;
     [Space]
     [SerializeField] private float PickupRange;
     private Rigidbody CurrentObject;
@@ -17,13 +20,12 @@ public class PickupCustom_Mk2 : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    void CheckPress()
     {
-        if (CurrentObject)
+        /*if (CurrentObject)
         {
             CurrentObject.transform.rotation = PickupTarget.rotation;
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -43,15 +45,20 @@ public class PickupCustom_Mk2 : MonoBehaviour
         }
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        CheckPress();
+
+        
+    }
+
     void FixedUpdate()
     {
         if (CurrentObject)
         {
-            Vector3 DirectionToPoint = PickupTarget.position - CurrentObject.position;
-            float DistanceToPoint = DirectionToPoint.magnitude;
+            Dest.SpringJoint.connectedBody = selectBody;
 
-            CurrentObject.velocity = DirectionToPoint * 12f * DistanceToPoint;
-            
         }
     }
 }
