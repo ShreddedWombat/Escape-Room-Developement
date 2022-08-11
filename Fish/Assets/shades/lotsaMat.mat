@@ -50,15 +50,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amplitude: 4
-    - _Amplitude_1: 2
-    - _Amplitude_2: 0.2
+    - _Amplitude: 1
+    - _Amplitude_1: 1
+    - _Amplitude_2: 1
     - _Amplitude_3: 1
-    - _Amplitude_4: 3
+    - _Amplitude_4: 1
     - _Amplitude_5: 1
     - _Amplitude_6: 1
-    - _Amplitude_7: 0.2
-    - _Depth: 112
+    - _Amplitude_7: 1
+    - _Depth: 10
     - _Gravity: 9.81
     - _NextDistance: 0.9
     - _Phase: 0
@@ -66,14 +66,14 @@ Material:
     - _QueueOffset: 0
     m_Colors:
     - _Color: {r: 0.1151299, g: 0.5473306, b: 0.7924528, a: 0}
-    - _Direction: {r: 0.1, g: 0, b: 0, a: 0}
-    - _Direction_1: {r: 0.2, g: 0, b: 0.01, a: 0}
-    - _Direction_2: {r: 0, g: 0, b: 0.3, a: 0}
-    - _Direction_3: {r: 0.1, g: 0, b: 0.04, a: 0}
-    - _Direction_4: {r: 0.1, g: 0, b: 0, a: 0}
-    - _Direction_5: {r: 0.03, g: 0, b: 0.02, a: 0}
-    - _Direction_6: {r: 0.01, g: 0, b: 0, a: 0}
-    - _Direction_7: {r: 0.1, g: 0, b: 0.11, a: 0}
-    - _TimeScales: {r: 1, g: 0, b: 0, a: 0}
-    - _TimeScales_1: {r: 0, g: 0, b: 0, a: 0}
+    - _Direction: {r: 0.01, g: 0, b: -0.01, a: 0}
+    - _Direction_1: {r: -0.01, g: 0, b: -0.01, a: 0}
+    - _Direction_2: {r: 0.01, g: 0, b: -0.01, a: 0}
+    - _Direction_3: {r: -0.01, g: 0, b: -0.01, a: 0}
+    - _Direction_4: {r: 0.01, g: 0, b: -0.06, a: 0}
+    - _Direction_5: {r: -0.01, g: 0, b: -0.49, a: 0}
+    - _Direction_6: {r: 0.01, g: 0, b: 0.08, a: 0}
+    - _Direction_7: {r: -0.01, g: 0, b: 0, a: 0}
+    - _TimeScales: {r: 0.01, g: 0.01, b: 0.01, a: 0.01}
+    - _TimeScales_1: {r: 0.01, g: 0.01, b: 0.01, a: 0.01}
   m_BuildTextureStacks: []
