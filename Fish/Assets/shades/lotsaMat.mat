@@ -74,6 +74,6 @@ Material:
     - _Direction_5: {r: -0.01, g: 0, b: 0.01, a: 0}
     - _Direction_6: {r: 0.01, g: 0, b: 0.01, a: 0}
     - _Direction_7: {r: -0.01, g: 0, b: 0.01, a: 0}
-    - _TimeScales: {r: 0.1, g: 0.08, b: 0.1, a: 0.35}
+    - _TimeScales: {r: 0.16, g: 0.11, b: 0.13, a: 0.36}
     - _TimeScales_1: {r: 0.3, g: 1, b: 0.1, a: 0.1}
   m_BuildTextureStacks: []
