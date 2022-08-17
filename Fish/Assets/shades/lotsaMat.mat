@@ -24,14 +24,18 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: b0ab629de2933e848a500c042a3e70bd, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _ALPHAPREMULTIPLY_ON
+  - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
+  stringTagMap:
+    RenderType: Transparent
+  disabledShaderPasses:
+  - DepthOnly
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -50,20 +54,34 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amplitude: 1
-    - _Amplitude_1: 1
-    - _Amplitude_2: 0.32
-    - _Amplitude_3: 2.42
-    - _Amplitude_4: 1.76
-    - _Amplitude_5: 1.57
-    - _Amplitude_6: 1
-    - _Amplitude_7: 1
+    - _AlphaClip: 0
+    - _Amplitude: 0.17
+    - _Amplitude_1: 0.36
+    - _Amplitude_2: 0.78
+    - _Amplitude_3: 0.39
+    - _Amplitude_4: 0.48
+    - _Amplitude_5: 0.45
+    - _Amplitude_6: 0.33
+    - _Amplitude_7: 0.18
+    - _Blend: 0
+    - _BlendModePreserveSpecular: 1
+    - _CastShadows: 1
+    - _Cull: 2
     - _Depth: 10
+    - _DstBlend: 10
     - _Gravity: 9.81
     - _NextDistance: 0.9
     - _Phase: 0
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _ReceiveShadows: 1
+    - _SrcBlend: 1
+    - _Strength: 0.02
+    - _Surface: 1
+    - _WorkflowMode: 1
+    - _ZTest: 4
+    - _ZWrite: 0
+    - _ZWriteControl: 0
     m_Colors:
     - _Color: {r: 0.1151299, g: 0.5473306, b: 0.7924528, a: 0}
     - _Direction: {r: 0.01, g: 0, b: -0.01, a: 0}
