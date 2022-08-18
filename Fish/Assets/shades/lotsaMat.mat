@@ -76,7 +76,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SrcBlend: 1
-    - _Strength: 0.02
+    - _Strength: 0.0015
     - _Surface: 1
     - _WorkflowMode: 1
     - _ZTest: 4
