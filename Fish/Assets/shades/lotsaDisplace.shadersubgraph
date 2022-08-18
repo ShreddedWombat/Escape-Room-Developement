@@ -7974,10 +7974,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 3199.0,
-            "y": 898.0000610351563,
+            "x": 3380.0,
+            "y": 898.0,
             "width": 126.0,
-            "height": 76.99993896484375
+            "height": 77.0
         }
     },
     "m_Slots": [

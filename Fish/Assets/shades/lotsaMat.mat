@@ -55,11 +55,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
-    - _Amplitude: 0.17
+    - _Amplitude: 1.19
     - _Amplitude_1: 0.36
     - _Amplitude_2: 0.78
-    - _Amplitude_3: 0.39
-    - _Amplitude_4: 0.48
+    - _Amplitude_3: 1.83
+    - _Amplitude_4: 1.42
     - _Amplitude_5: 0.45
     - _Amplitude_6: 0.33
     - _Amplitude_7: 0.18
@@ -84,14 +84,14 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _Color: {r: 0.1151299, g: 0.5473306, b: 0.7924528, a: 0}
-    - _Direction: {r: 0.01, g: 0, b: -0.01, a: 0}
-    - _Direction_1: {r: -0.01, g: 0, b: -0.01, a: 0}
-    - _Direction_2: {r: 0.3, g: 0, b: -0.01, a: 0}
-    - _Direction_3: {r: 0.08, g: 0, b: -0.05, a: 0}
+    - _Direction: {r: 0.01, g: 0, b: -0.1, a: 0}
+    - _Direction_1: {r: 0, g: 0, b: -0.01, a: 0}
+    - _Direction_2: {r: 0.21, g: 0, b: -0.01, a: 0}
+    - _Direction_3: {r: 0.03, g: 0, b: -0.08, a: 0}
     - _Direction_4: {r: 0.01, g: 0, b: 0.01, a: 0}
     - _Direction_5: {r: -0.01, g: 0, b: 0.01, a: 0}
     - _Direction_6: {r: 0.01, g: 0, b: 0.01, a: 0}
     - _Direction_7: {r: -0.01, g: 0, b: 0.01, a: 0}
     - _TimeScales: {r: 0.16, g: 0.11, b: 0.13, a: 0.36}
-    - _TimeScales_1: {r: 0.3, g: 1, b: 0.1, a: 0.1}
+    - _TimeScales_1: {r: 0.3, g: 1.13, b: 0.1, a: 0.1}
   m_BuildTextureStacks: []
