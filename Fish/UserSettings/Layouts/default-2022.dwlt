@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 46
+  controlID: 18
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 47
+  controlID: 19
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 48
+  controlID: 20
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -346,22 +346,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/shades
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/shades
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\erikc\Documents\GitHub\Escape-Room-Developement\Fish
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 62730000
-    m_LastClickedID: 29538
-    m_ExpandedIDs: 000000006273000000ca9a3b
+    m_SelectedIDs: 20730000
+    m_LastClickedID: 29472
+    m_ExpandedIDs: 000000007c71000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -389,7 +389,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000062730000
+    m_ExpandedIDs: 000000007c710000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -519,7 +519,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: eefaffff
+      m_ExpandedIDs: 00fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -812,9 +812,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 408.85562, y: 14.225899, z: 31.341042}
+    m_Target: {x: 515.8059, y: 22.385303, z: 67.554825}
     speed: 2
-    m_Value: {x: 408.85562, y: 14.225899, z: 31.341042}
+    m_Value: {x: 515.8059, y: 22.385303, z: 67.554825}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -860,20 +860,20 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.18565997, y: 0.7257903, z: -0.21428834, w: 0.62710524}
+    m_Target: {x: 0.0224711, y: 0.97488374, z: -0.11003011, w: 0.19355476}
     speed: 2
-    m_Value: {x: 0.18529928, y: 0.72657704, z: -0.21452138, w: 0.62588394}
+    m_Value: {x: 0.02292293, y: 0.97419566, z: -0.111431725, w: 0.19493659}
   m_Size:
-    m_Target: 49.532116
+    m_Target: 77.7255
     speed: 2
-    m_Value: 49.532116
+    m_Value: 74.37847
   m_Ortho:
     m_Target: 0
     speed: 2
     m_Value: 0
   m_CameraSettings:
-    m_Speed: 1.0005
-    m_SpeedNormalized: 0.49999997
+    m_Speed: 1.1204399
+    m_SpeedNormalized: 0.55999994
     m_SpeedMin: 0.001
     m_SpeedMax: 2
     m_EasingEnabled: 1
