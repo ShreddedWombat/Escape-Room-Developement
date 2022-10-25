@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class floater : MonoBehaviour
 {
+    public Transform[] floaters;
+
     public float underDrag = 3f;
 
     public float underangleDrag = 1f;
@@ -19,6 +21,8 @@ public class floater : MonoBehaviour
 
     Rigidbody m_Rigidbody;
 
+    int floatsUnder;
+
     bool underwater;
 
     // Start is called before the first frame update
@@ -30,18 +34,24 @@ public class floater : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        float diff = transform.position.y - waterHeight;
-
-        if(diff < 0)
+        floatsUnder = 0;
+        for (int i = 0; i < floaters.Length; i++)
         {
-            m_Rigidbody.AddForceAtPosition(Vector3.up * floatingPower * Mathf.Abs(diff), transform.position, ForceMode.Force);
-            if (!underwater)
+            float diff = floaters[i].position.y - waterHeight;
+
+            if (diff < 0)
             {
-                underwater = true;
-                SwitchDrag(true);
+                m_Rigidbody.AddForceAtPosition(Vector3.up * floatingPower * Mathf.Abs(diff), floaters[i].position, ForceMode.Force);
+                floatsUnder += 1;
+                if (!underwater)
+                {
+                    underwater = true;
+                    SwitchDrag(true);
+                }
             }
         }
-        else if(underwater)
+        
+        if(underwater && floatsUnder == 0)
         {
             underwater = false;
             SwitchDrag(false);
