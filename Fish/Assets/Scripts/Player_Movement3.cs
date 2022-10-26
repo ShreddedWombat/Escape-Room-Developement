@@ -12,6 +12,7 @@ public class Player_Movement3 : MonoBehaviour
     public Transform groundCheck;
 
     public bool isGrounded;
+    public bool yLock;
 
     public float groundDistance = 0.4f;
 
@@ -20,7 +21,7 @@ public class Player_Movement3 : MonoBehaviour
     //defines the variables that are used in player movement
     public float speed = 12f;
     public float gravity = -9.81f;
-    public float jumpHeight = 3f;
+    public float jumpHeight = 6f;
     public float minSpd = 0f;
     public float maxTme = 0.9f;
 
@@ -28,7 +29,6 @@ public class Player_Movement3 : MonoBehaviour
     public Vector3 velocity;
     public Vector3 move;
     public Vector3 playPoint;
-
 
     //Functions
 
@@ -67,13 +67,16 @@ public class Player_Movement3 : MonoBehaviour
         //detects when player is touching the ground, and sets y velocity to a constant to prevent excess accelleration
         if (isGrounded && velocity.y < -0.01f)
         {
-            if (velocity.y <= -0.1f)
+            if (velocity.y <= -3.1f)
             {
+                yLock = true;
+                velocity.y = -1.8f;
                 velocity.y = Mathf.MoveTowards(velocity.y, minSpd, maxTme * maxTme * Time.deltaTime);
             }
-            else
+            else if(velocity.y >= -0.1f && yLock)
             {
                 velocity.y = 0;
+                yLock = false;
             }
         }
         
